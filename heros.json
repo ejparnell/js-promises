@@ -1,0 +1,14 @@
+{
+    "mage": {
+        "health": "10",
+        "damage": "20"
+    },
+    "fighter": {
+        "health": "20",
+        "damage": "10"
+    },
+    "thief": {
+        "health": "15",
+        "damage": "15"
+    }
+}
