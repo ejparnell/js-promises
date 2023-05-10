@@ -61,6 +61,45 @@ const readAndWrite = (inFile, outFile) => {
 		})
 }
 
+// In JS if a function does not return anything it always return undefined
+const readFile = (inFile) => {
+	// because it take time to read from a file we need to start off with a promises
+	return new Promise((resolve, reject) => {
+		fs.readFile(inFile, 'utf8', (err, data) => {
+			// instead of console.error we reject if an error has happened
+			// if there is an error this mean that the error with go directly to the .catch
+			if (err) {
+				reject(err)
+			} else {
+				// instead of console.logging we send the data to the next .then
+				resolve(data)
+			}
+		})
+	})
+}
+
+const writeFile = (outFile, json) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(outFile, json, err => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(json)
+            }
+        })
+    })
+}
+
+const parseJson = (json) => {
+    const heroPojo = JSON.parse(json)
+    const herosJson = JSON.stringify(heroPojo, null, 2)
+
+    return herosJson
+}
+
 module.exports = {
-    readAndWrite
+    readAndWrite,
+    readFile,
+    writeFile,
+    parseJson
 }
